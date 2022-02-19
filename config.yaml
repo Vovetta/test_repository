@@ -1,0 +1,7 @@
+Service:
+  host: localhost
+  port: 8080
+  debug: true
+
+Sqlite:
+  database: 'metrics.db'

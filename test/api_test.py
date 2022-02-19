@@ -3,10 +3,6 @@ from collections import Generator
 from fastapi.testclient import TestClient
 from pytest import fixture
 
-from config import Sqlite
-
-Sqlite.database = ':memory:'
-
 
 @fixture(scope='module')
 def client() -> Generator:

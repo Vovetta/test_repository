@@ -144,5 +144,7 @@ cython_debug/
 .vscode/
 
 # Data
-config.yaml
-sqlite.db*
+# config.yaml
+metrics.db-*
+test.py
+dataset.csv
