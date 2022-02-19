@@ -1,0 +1,5 @@
+fastapi==0.74.0
+hypercorn==0.13.2
+pytest==7.0.1
+PyYAML==6.0
+tortoise-orm==0.18.1
