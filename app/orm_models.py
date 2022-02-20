@@ -1,5 +1,4 @@
 from tortoise import Model
-from tortoise.contrib.pydantic import pydantic_model_creator
 from tortoise.fields import (
     IntField, CharField, DateField, DecimalField,
     ForeignKeyField,
@@ -9,6 +8,9 @@ from tortoise.fields import (
 
 
 class AdvertisingChannel(Model):
+    """
+    ORM class for representing channel
+    """
     id = IntField(pk=True)
     name = CharField(max_length=30)
 
@@ -19,6 +21,9 @@ class AdvertisingChannel(Model):
 
 
 class Country(Model):
+    """
+    ORM class for representing country
+    """
     id = IntField(pk=True)
     name = CharField(max_length=2)
 
@@ -29,6 +34,9 @@ class Country(Model):
 
 
 class OperatingSystem(Model):
+    """
+    ORM class for representing os
+    """
     id = IntField(pk=True)
     name = CharField(max_length=7)
 
@@ -39,6 +47,9 @@ class OperatingSystem(Model):
 
 
 class PerformanceMetric(Model):
+    """
+    ORM class for representing metric
+    """
     id = IntField(pk=True)
     date = DateField()
     channel: ForeignKeyRelation[AdvertisingChannel] = ForeignKeyField(

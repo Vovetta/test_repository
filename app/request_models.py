@@ -1,10 +1,13 @@
 from datetime import date
-from typing import Optional, List, Set
+from typing import Optional, List, Set, Iterable, Tuple
 
 from fastapi import Query
 
 
 class PerformanceMetricsRequest:
+    """
+    Class for preprocessing request query parameters
+    """
     relational_fields = ('channel', 'country', 'os')
     grouping_fields = {'date', 'channel', 'country', 'os'}
     filtering_fields = {
@@ -28,7 +31,7 @@ class PerformanceMetricsRequest:
             description='Ordering in ascending order ("column") and descending order ("-column")'
         ),
         columns: List[str] = Query([], description='Columns that need to be returned')
-    ):
+    ) -> None:
         local_variables = locals()
         self.filters = {
             value: local_variables[key]
@@ -42,7 +45,14 @@ class PerformanceMetricsRequest:
         self.order_by = self.to_orm_fields(order_by, PerformanceMetricsRequest.relational_fields)
         self.return_columns = self.to_orm_fields(columns, PerformanceMetricsRequest.relational_fields)
 
-    def to_orm_fields(self, columns, relational_fields):
+    def to_orm_fields(self, columns: Iterable[str], relational_fields: Tuple[str, ...]) -> List[str]:
+        """
+        Transform api fields to orm fields
+
+        :param columns: columns from request
+        :param relational_fields: fields, that should be fixed
+        :return: fixed list of orm fields
+        """
         return [
             column
             if column.lstrip('-') not in relational_fields

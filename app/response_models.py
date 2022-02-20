@@ -6,6 +6,9 @@ from pydantic import BaseModel, Field
 
 
 class PerformanceMetricsResponse(BaseModel):
+    """
+    Class for preprocessing response to fit example representation
+    """
     id: Optional[int]
     date: Optional[date]
     channel: Optional[Any] = Field(None, alias='channel__name')
