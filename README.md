@@ -1,4 +1,4 @@
-# Adjust Home Task
+# Home Task
 
 API for querying performance metrics form DB
 
